@@ -1,0 +1,16 @@
+{
+  "name": "德鸿车行 - 重卡销售",
+  "short_name": "德鸿车行",
+  "description": "牵引车、挂车、自卸车、搅拌车、专用车销售",
+  "start_url": "/dehong-chehang/",
+  "display": "standalone",
+  "background_color": "#141a29",
+  "theme_color": "#141a29",
+  "orientation": "any",
+  "icons": [{
+    "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='38' fill='%23141a29'/><text y='130' x='96' text-anchor='middle' font-size='100'>🚛</text></svg>",
+    "sizes": "192x192",
+    "type": "image/svg+xml",
+    "purpose": "any maskable"
+  }]
+}

@@ -554,13 +554,15 @@ function openDetail(id){
     <span class="modal-cat">${p.cat}</span>
     <div class="modal-price">¥${(p.price/10000).toFixed(0)}<small>万起</small></div>
     <table class="specs-table">${Object.entries(p.specs).map(([k,v])=>`<tr><th>${k}</th><td>${v}</td></tr>`).join('')}</table>
+    <div style="text-align:center;margin-bottom:16px;padding:14px;background:var(--bg);border-radius:var(--radius)"><p style="font-size:12px;color:var(--text-muted);margin-bottom:8px">📱 微信扫码查看此车详情</p><img id="detailQrImg" src="" style="width:140px;height:140px;display:block;margin:0 auto;border-radius:6px" alt="扫码看车"></div>
     <div class="modal-desc">${p.desc}</div>
     <div class="modal-actions">
       <button class="btn-primary${added?' in-cart':''}" onclick="${added?`removeFromCart(${id});closeDetail()`:`addToCart(${id});closeDetail()`}" style="${added?'background:var(--success)':''}"><i data-lucide="${added?'check':'plus'}"></i>${added?'已加入询价清单':'加入询价清单'}</button>
       <button class="btn-outline" onclick="closeDetail();toggleCart()"><i data-lucide="shopping-cart"></i>查看询价清单</button>
       <button class="btn-outline" onclick="closeDetail();openCalc()"><i data-lucide="calculator"></i>贷款计算</button>
     </div>`;
-  document.getElementById('detailModal').style.display='';document.body.style.overflow='hidden';lucide.createIcons();
+  document.getElementById('detailModal').style.display='';document.body.style.overflow='hidden';var qrImg = document.getElementById('detailQrImg'); if(qrImg) qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent('https://hfh2694545118-boop.github.io/dehong-chehang/index.html#detail-' + id);
+  lucide.createIcons();
 }
 function closeDetail(){document.getElementById('detailModal').style.display='none';document.body.style.overflow=''}
 
@@ -711,7 +713,7 @@ initCarousel();renderCatBar();renderProducts('全部');updateUI();renderRecent()
 </div>
 
 <!-- ═══════════════ WECHAT/SHARE MODAL ═══════════════ -->
-<div id="wechatModal" style="display:none"><div class="modal-overlay" onclick="closeWechat()"><div class="modal" style="max-width:440px" onclick="event.stopPropagation()"><button class="modal-close" onclick="closeWechat()"><i data-lucide="x"></i></button><div class="modal-body"><div class="modal-title" style="text-align:center;margin-bottom:4px">扫码添加微信</div><p style="font-size:13px;color:var(--text-muted);text-align:center;margin-bottom:20px">销售顾问一对一服务 · 车型报价即时获取</p><div class="qr-box"><div class="qr-placeholder"><i data-lucide="qr-code"></i><div style="font-size:12px;color:var(--text-muted)">微信扫码添加</div><div style="font-size:13px;font-weight:600;color:var(--gold)">15328047889</div></div></div><div class="share-btns"><button class="share-btn" onclick="sharePage('wechat')"><i data-lucide="message-circle"></i>分享到微信</button><button class="share-btn" onclick="sharePage('copy')"><i data-lucide="copy"></i>复制链接</button></div></div></div></div></div>
+<div id="wechatModal" style="display:none"><div class="modal-overlay" onclick="closeWechat()"><div class="modal" style="max-width:440px" onclick="event.stopPropagation()"><button class="modal-close" onclick="closeWechat()"><i data-lucide="x"></i></button><div class="modal-body"><div class="modal-title" style="text-align:center;margin-bottom:4px">扫码添加微信</div><p style="font-size:13px;color:var(--text-muted);text-align:center;margin-bottom:20px">销售顾问一对一服务 · 车型报价即时获取</p><div class="qr-box"><div style="text-align:center"><img src="qrcodes/main-qr.png" alt="扫码访问德鸿车行" style="width:200px;height:200px;border-radius:8px;margin:0 auto;display:block"><p style="font-size:12px;color:var(--text-muted);margin-top:8px">微信扫码 · 浏览全部车型</p><p style="font-size:13px;font-weight:600;color:var(--gold)">15328047889</p></div></div><div class="share-btns"><button class="share-btn" onclick="sharePage('wechat')"><i data-lucide="message-circle"></i>分享到微信</button><button class="share-btn" onclick="sharePage('copy')"><i data-lucide="copy"></i>复制链接</button></div></div></div></div></div>
 
 </body>
 </html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>德鸿车行 - 宣传单页</title>
+<style>
+@page{size:A4;margin:0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;color:#1a1a1a;background:#fff}
+.page{width:210mm;min-height:297mm;margin:0 auto;padding:20mm 18mm;background:#fff;page-break-after:always}
+.page:last-child{page-break-after:auto}
+
+/* Page 1 - Full poster */
+.hero-section{text-align:center;margin-bottom:16mm}
+.logo{font-size:28px;font-weight:900;color:#141a29;margin-bottom:4mm;letter-spacing:2px}
+.tagline{font-size:13px;color:#888;margin-bottom:6mm}
+.qr-section{display:flex;justify-content:center;align-items:center;gap:12mm;margin-bottom:12mm}
+.qr-box{text-align:center}
+.qr-box img{width:45mm;height:45mm;border:1px solid #eee;border-radius:4px}
+.qr-box p{font-size:9px;color:#888;margin-top:2mm}
+.highlights{display:flex;justify-content:center;gap:8mm;margin-bottom:12mm;flex-wrap:wrap}
+.hl-item{text-align:center;min-width:30mm}
+.hl-num{font-size:22px;font-weight:900;color:#e8982e}
+.hl-label{font-size:9px;color:#888;margin-top:1mm}
+
+.featured-title{font-size:15px;font-weight:800;text-align:center;margin-bottom:6mm;padding-bottom:2mm;border-bottom:2px solid #141a29;display:inline-block}
+.featured-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5mm;margin-bottom:10mm}
+.feat-card{border:1px solid #e8e8e8;border-radius:4px;padding:4mm;text-align:center}
+.feat-name{font-size:10px;font-weight:700;margin-bottom:2mm}
+.feat-price{font-size:13px;font-weight:800;color:#c62828}
+.feat-price small{font-size:8px;color:#999}
+.feat-tag{display:inline-block;font-size:7px;background:#e8982e;color:#fff;padding:1px 5px;border-radius:2px;margin-bottom:2mm}
+
+.contact-bar{text-align:center;border-top:1px solid #e8e8e8;padding-top:5mm}
+.contact-phone{font-size:24px;font-weight:900;color:#141a29;letter-spacing:1px}
+.contact-info{font-size:9px;color:#888;margin-top:2mm}
+
+/* Page 2 - Truck QR stickers (6 per page) */
+.sticker-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6mm}
+.sticker{border:1px dashed #ccc;border-radius:4px;padding:4mm;text-align:center}
+.sticker-qr{width:28mm;height:28mm;margin:0 auto 3mm;display:block}
+.sticker-name{font-size:9px;font-weight:700;margin-bottom:1mm}
+.sticker-price{font-size:11px;font-weight:800;color:#c62828}
+.sticker-spec{font-size:7px;color:#888;margin-top:1mm}
+.sticker .cut-line{font-size:7px;color:#ccc;margin-top:2mm}
+
+@media print{
+  body{background:#fff}
+  .page{box-shadow:none;margin:0}
+}
+@media screen{
+  body{background:#f0f0f0;padding:20px}
+  .page{box-shadow:0 2px 12px rgba(0,0,0,.15);margin-bottom:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ PAGE 1: 宣传海报 ═══ -->
+<div class="page">
+  <div class="hero-section">
+    <div class="logo">🚛 德鸿车行</div>
+    <div class="tagline">牵引车 · 挂车 · 自卸车 · 搅拌车 · 专用车 | 厂家直供 · 全国可提</div>
+  </div>
+
+  <div class="qr-section">
+    <div style="text-align:center;max-width:60mm">
+      <h2 style="font-size:16px;font-weight:800;margin-bottom:2mm">扫码看车 · 在线询价</h2>
+      <p style="font-size:9px;color:#888;margin-bottom:4mm;line-height:1.6">28款重卡在线浏览，分类筛选，参数对比<br>加入询价清单，一键提交，顾问30分钟回复</p>
+    </div>
+    <div class="qr-box">
+      <img src="qrcodes/main-qr.png" alt="扫码访问">
+      <p>微信/浏览器扫码</p>
+    </div>
+  </div>
+
+  <div class="highlights">
+    <div class="hl-item"><div class="hl-num">28</div><div class="hl-label">在售车型</div></div>
+    <div class="hl-item"><div class="hl-num">20年</div><div class="hl-label">行业经验</div></div>
+    <div class="hl-item"><div class="hl-num">12家</div><div class="hl-label">合作品牌</div></div>
+    <div class="hl-item"><div class="hl-num">800+</div><div class="hl-label">服务站点</div></div>
+  </div>
+
+  <div style="text-align:center"><span class="featured-title">🔥 热门车型推荐</span></div>
+  <div class="featured-grid">
+    <div class="feat-card">
+      <span class="feat-tag">热门</span>
+      <div class="feat-name">解放J7 牵引车</div>
+      <div class="feat-price">¥38<small>万起</small></div>
+    </div>
+    <div class="feat-card">
+      <span class="feat-tag">热门</span>
+      <div class="feat-name">陕汽德龙X6000</div>
+      <div class="feat-price">¥45.6<small>万起</small></div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-name">重汽HOWO TH7</div>
+      <div class="feat-price">¥42<small>万起</small></div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-name">东风天龙KL</div>
+      <div class="feat-price">¥35.8<small>万起</small></div>
+    </div>
+    <div class="feat-card">
+      <span class="feat-tag">促销</span>
+      <div class="feat-name">大运N9H 牵引车</div>
+      <div class="feat-price">¥30.8<small>万起</small></div>
+    </div>
+    <div class="feat-card">
+      <span class="feat-tag">新品</span>
+      <div class="feat-name">福田欧马可S5</div>
+      <div class="feat-price">¥21.8<small>万起</small></div>
+    </div>
+  </div>
+
+  <div class="contact-bar">
+    <div class="contact-phone">📞 153 2804 7889</div>
+    <div class="contact-info">四川省成都市新都区物流大道288号 · 7×24小时在线接听 · dehong@chehang.com</div>
+    <div style="margin-top:3mm;font-size:8px;color:#bbb">德鸿车行 | 20年专注商用车销售服务 | 扫码了解更多</div>
+  </div>
+</div>
+
+<!-- ═══ PAGE 2: 车型二维码贴纸 ═══ -->
+<div class="page">
+  <div style="text-align:center;margin-bottom:5mm">
+    <h3 style="font-size:14px;font-weight:800">车型专属二维码</h3>
+    <p style="font-size:9px;color:#888">裁剪后贴于对应展车上，客户扫码即可查看详细参数</p>
+  </div>
+  <div class="sticker-grid" id="stickerGrid"></div>
+  <div style="text-align:center;margin-top:4mm;font-size:8px;color:#ccc">— 沿虚线裁剪 —</div>
+</div>
+
+<script>
+// Generate 12 truck QR stickers
+var trucks = [
+  {name:"解放J7 牵引车",price:"¥38万",hp:"560马力",id:1},
+  {name:"陕汽德龙X6000",price:"¥45.6万",hp:"600马力",id:4},
+  {name:"重汽HOWO TH7",price:"¥42万",hp:"550马力",id:3},
+  {name:"东风天龙KL",price:"¥35.8万",hp:"520马力",id:2},
+  {name:"福田欧曼EST",price:"¥36.8万",hp:"560马力",id:5},
+  {name:"重汽HOWO自卸车",price:"¥39.8万",hp:"460马力",id:8},
+  {name:"三一搅拌车",price:"¥52万",hp:"375马力",id:10},
+  {name:"中集集装箱挂车",price:"¥18万",hp:"-",id:11},
+  {name:"大运N9H",price:"¥30.8万",hp:"500马力",id:18},
+  {name:"解放JH6载货车",price:"¥32万",hp:"460马力",id:6},
+  {name:"华骏栏板挂车",price:"¥15万",hp:"-",id:12},
+  {name:"福田冷藏车",price:"¥42万",hp:"220马力",id:15}
+];
+
+var grid = document.getElementById('stickerGrid');
+grid.innerHTML = trucks.map(function(t){
+  return '<div class="sticker"><img class="sticker-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='+encodeURIComponent('https://hfh2694545118-boop.github.io/dehong-chehang/index.html#detail-'+t.id)+'" alt="QR"><div class="sticker-name">'+t.name+'</div><div class="sticker-price">'+t.price+'</div><div class="sticker-spec">'+t.hp+'</div><div class="cut-line">- - - 沿此线裁剪 - - -</div></div>';
+}).join('');
+</script>
+
+</body>
+</html>

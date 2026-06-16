@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>德鸿车行 — 牵引车 · 挂车 · 专用车销售</title>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+:root {
+  --navy: #141a29;
+  --navy-light: #1e2738;
+  --navy-lighter: #2a354a;
+  --gold: #c7851a;
+  --gold-light: #e8982e;
+  --gold-pale: #fef7ed;
+  --bg: #f2f3f5;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --text-secondary: #5c5c5c;
+  --text-muted: #999;
+  --border: #e5e5e5;
+  --border-light: #f0f0f0;
+  --success: #1b7a3d;
+  --danger: #c62828;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.06);
+  --shadow: 0 2px 8px rgba(0,0,0,.08);
+  --shadow-lg: 0 8px 30px rgba(0,0,0,.12);
+  --radius: 6px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font:inherit;border:none;background:none}
+img{max-width:100%;display:block}
+
+/* ── Header ── */
+.header{position:sticky;top:0;z-index:100;background:var(--navy);color:#fff;box-shadow:0 2px 12px rgba(0,0,0,.15)}
+.header-inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:64px;gap:32px}
+.header-logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:700;letter-spacing:.5px;white-space:nowrap}
+.header-logo .lucide{color:var(--gold-light);width:28px;height:28px}
+.header-nav{display:flex;gap:28px;font-size:14px;margin-left:auto}
+.header-nav a{padding:4px 0;border-bottom:2px solid transparent;transition:all .15s}
+.header-nav a:hover,.header-nav a.active{border-bottom-color:var(--gold-light);color:var(--gold-light)}
+.header-phone{display:flex;align-items:center;gap:6px;font-size:15px;font-weight:600;color:var(--gold-light);white-space:nowrap}
+.header-phone .lucide{width:16px;height:16px}
+.cart-btn{position:relative;display:flex;align-items:center;gap:6px;color:#fff;font-size:14px;padding:6px 12px;border-radius:var(--radius);transition:background .15s}
+.cart-btn:hover{background:var(--navy-lighter)}
+.cart-btn .lucide{width:20px;height:20px}
+.cart-badge{position:absolute;top:-4px;right:0;background:var(--danger);color:#fff;font-size:11px;font-weight:700;min-width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 5px}
+
+/* ── Hero ── */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,#2d3b2a 100%);color:#fff;padding:80px 24px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200"><rect width="800" height="200" fill="none"/><path d="M0 180 L200 40 L400 160 L600 30 L800 170" stroke="rgba(255,255,255,0.03)" stroke-width="2" fill="none"/></svg>') repeat-x bottom;background-size:800px 200px}
+.hero-content{position:relative;z-index:1;max-width:720px;margin:0 auto}
+.hero h1{font-size:40px;font-weight:800;letter-spacing:1px;margin-bottom:12px}
+.hero p{font-size:17px;color:rgba(255,255,255,.7);margin-bottom:32px}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;background:var(--gold-light);color:#fff;font-size:15px;font-weight:600;padding:12px 32px;border-radius:var(--radius);transition:background .15s}
+.hero-cta:hover{background:var(--gold)}
+.hero-stats{display:flex;justify-content:center;gap:48px;margin-top:40px}
+.hero-stat{text-align:center}
+.hero-stat-val{font-size:32px;font-weight:800;color:var(--gold-light)}
+.hero-stat-label{font-size:13px;color:rgba(255,255,255,.5);margin-top:2px}
+
+/* ── Category Filter ── */
+.cat-bar{background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:64px;z-index:90}
+.cat-bar-inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;gap:4px;overflow-x:auto}
+.cat-btn{flex-shrink:0;padding:12px 20px;font-size:14px;font-weight:500;color:var(--text-secondary);border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap}
+.cat-btn:hover{color:var(--text)}
+.cat-btn.active{color:var(--navy);border-bottom-color:var(--gold-light);font-weight:600}
+
+/* ── Main Content ── */
+.main{max-width:1280px;margin:0 auto;padding:32px 24px 80px}
+.product-count{margin-bottom:20px;font-size:13px;color:var(--text-muted)}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:20px}
+
+/* ── Product Card ── */
+.card{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm);transition:box-shadow .2s,transform .15s;cursor:pointer;display:flex;flex-direction:column}
+.card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px)}
+.card-img{height:220px;background:var(--navy-lighter);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.card-img .img-placeholder{font-size:14px;color:rgba(255,255,255,.4);text-align:center;padding:16px}
+.card-img .img-placeholder .lucide{width:48px;height:48px;margin-bottom:8px;opacity:.5}
+.card-img .cat-tag{position:absolute;top:12px;left:12px;background:rgba(0,0,0,.5);color:#fff;font-size:12px;padding:3px 10px;border-radius:3px;backdrop-filter:blur(4px)}
+.card-body{padding:18px 20px;flex:1;display:flex;flex-direction:column;gap:10px}
+.card-name{font-size:17px;font-weight:700;line-height:1.3}
+.card-specs{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--text-secondary)}
+.card-specs span{white-space:nowrap}
+.card-bottom{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-top:1px solid var(--border-light);margin-top:auto}
+.card-price{font-size:20px;font-weight:800;color:var(--danger)}
+.card-price small{font-size:13px;font-weight:400;color:var(--text-muted)}
+.card-add{display:flex;align-items:center;gap:6px;background:var(--navy);color:#fff;font-size:13px;font-weight:600;padding:8px 16px;border-radius:var(--radius);transition:background .15s}
+.card-add:hover{background:var(--navy-lighter)}
+.card-add .lucide{width:16px;height:16px}
+.card-add.in-cart{background:var(--success)}
+.card-add.in-cart:hover{background:#155a2e}
+
+/* ── Detail Modal ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:flex;align-items:center;justify-content:center;padding:24px;animation:fadeIn .2s}
+.modal{background:var(--card);border-radius:var(--radius);max-width:800px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:var(--shadow-lg);animation:slideUp .25s}
+.modal-close{position:sticky;top:0;float:right;margin:16px 16px 0 0;z-index:1;padding:6px;border-radius:4px;transition:background .15s}
+.modal-close:hover{background:var(--bg)}
+.modal-img{height:340px;background:var(--navy-lighter);display:flex;align-items:center;justify-content:center}
+.modal-img .img-placeholder .lucide{width:64px;height:64px;opacity:.4}
+.modal-img .img-placeholder{font-size:15px;color:rgba(255,255,255,.4);text-align:center}
+.modal-body{padding:28px 32px 32px}
+.modal-title{font-size:24px;font-weight:800;margin-bottom:6px}
+.modal-cat{display:inline-block;font-size:12px;color:var(--gold);font-weight:600;background:var(--gold-pale);padding:3px 10px;border-radius:3px;margin-bottom:16px}
+.modal-price{font-size:28px;font-weight:800;color:var(--danger);margin-bottom:20px}
+.modal-price small{font-size:15px;font-weight:400;color:var(--text-muted)}
+.specs-table{width:100%;border-collapse:collapse;margin-bottom:24px}
+.specs-table th,.specs-table td{padding:10px 14px;font-size:14px;text-align:left;border-bottom:1px solid var(--border-light)}
+.specs-table th{color:var(--text-muted);font-weight:500;width:120px;white-space:nowrap}
+.specs-table td{color:var(--text)}
+.modal-desc{font-size:14px;color:var(--text-secondary);line-height:1.8;margin-bottom:24px}
+.modal-actions{display:flex;gap:12px}
+.btn-primary{display:flex;align-items:center;gap:8px;background:var(--navy);color:#fff;font-size:15px;font-weight:600;padding:12px 28px;border-radius:var(--radius);transition:background .15s}
+.btn-primary:hover{background:var(--navy-lighter)}
+.btn-primary .lucide{width:18px;height:18px}
+.btn-outline{display:flex;align-items:center;gap:8px;border:1px solid var(--border);color:var(--text);font-size:15px;font-weight:500;padding:12px 28px;border-radius:var(--radius);transition:all .15s}
+.btn-outline:hover{border-color:var(--navy);color:var(--navy)}
+.btn-primary.in-cart{background:var(--success)}
+.btn-primary.in-cart:hover{background:#155a2e}
+
+/* ── Cart Panel ── */
+.cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:300;animation:fadeIn .2s}
+.cart-panel{position:fixed;top:0;right:0;bottom:0;width:400px;max-width:100vw;background:var(--card);z-index:301;display:flex;flex-direction:column;box-shadow:-4px 0 24px rgba(0,0,0,.12);animation:slideRight .25s}
+.cart-header{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;border-bottom:1px solid var(--border)}
+.cart-header h3{font-size:17px;font-weight:700}
+.cart-header button{padding:4px;border-radius:4px;transition:background .15s}
+.cart-header button:hover{background:var(--bg)}
+.cart-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--text-muted);gap:12px;font-size:14px}
+.cart-empty .lucide{width:48px;height:48px;opacity:.4}
+.cart-items{flex:1;overflow-y:auto;padding:12px 0}
+.cart-item{display:flex;gap:14px;padding:14px 24px;border-bottom:1px solid var(--border-light);align-items:flex-start}
+.cart-item-img{width:64px;height:48px;background:var(--navy-lighter);border-radius:4px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.cart-item-img .lucide{width:22px;height:22px;color:rgba(255,255,255,.4)}
+.cart-item-info{flex:1;min-width:0}
+.cart-item-name{font-size:14px;font-weight:600;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cart-item-price{font-size:15px;font-weight:700;color:var(--danger)}
+.cart-item-qty{display:flex;align-items:center;gap:8px;margin-top:6px}
+.cart-item-qty button{width:26px;height:26px;border:1px solid var(--border);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .15s}
+.cart-item-qty button:hover{background:var(--bg);border-color:#ccc}
+.cart-item-qty span{font-size:14px;font-weight:600;min-width:24px;text-align:center}
+.cart-item-remove{margin-top:6px;font-size:12px;color:var(--text-muted);padding:2px 0;transition:color .15s}
+.cart-item-remove:hover{color:var(--danger)}
+.cart-footer{padding:18px 24px;border-top:1px solid var(--border)}
+.cart-total{display:flex;justify-content:space-between;align-items:center;font-size:16px;font-weight:700;margin-bottom:14px}
+.cart-total-amount{font-size:22px;color:var(--danger)}
+.cart-submit{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--gold-light);color:#fff;font-size:15px;font-weight:600;padding:14px;border-radius:var(--radius);transition:background .15s}
+.cart-submit:hover{background:var(--gold)}
+.cart-submit .lucide{width:18px;height:18px}
+
+/* ── Inquiry Form Modal ── */
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-size:13px;font-weight:600;color:var(--text-secondary);margin-bottom:6px}
+.form-group label .required{color:var(--danger)}
+.form-group input,.form-group textarea{width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);font-size:14px;font-family:inherit;transition:border-color .15s;outline:none}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--navy)}
+.form-group textarea{resize:vertical;min-height:80px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-summary{background:var(--bg);border-radius:var(--radius);padding:14px 18px;margin-bottom:18px}
+.form-summary h4{font-size:13px;color:var(--text-muted);font-weight:500;margin-bottom:8px}
+.form-summary-item{display:flex;justify-content:space-between;font-size:14px;padding:4px 0}
+.form-summary-total{display:flex;justify-content:space-between;font-size:15px;font-weight:700;padding-top:8px;margin-top:4px;border-top:1px solid var(--border)}
+.toast{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;font-size:14px;padding:10px 24px;border-radius:20px;z-index:500;animation:toastUp .3s;box-shadow:var(--shadow-lg)}
+.toast.success{background:var(--success)}
+
+
+/* ── About Section ── */
+.about{background:var(--card);padding:80px 24px}
+.about-inner{max-width:1080px;margin:0 auto}
+.section-title{font-size:28px;font-weight:800;text-align:center;margin-bottom:12px}
+.section-subtitle{font-size:15px;color:var(--text-muted);text-align:center;margin-bottom:48px}
+.about-body{max-width:760px;margin:0 auto 48px;font-size:15px;color:var(--text-secondary);line-height:2;text-align:center}
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.about-card{text-align:center;padding:36px 24px;border:1px solid var(--border-light);border-radius:var(--radius);transition:box-shadow .2s}
+.about-card:hover{box-shadow:var(--shadow)}
+.about-card .lucide{width:36px;height:36px;color:var(--gold-light);margin-bottom:14px}
+.about-card h4{font-size:15px;font-weight:700;margin-bottom:6px}
+.about-card p{font-size:13px;color:var(--text-secondary);line-height:1.7}
+
+/* ── Contact Section ── */
+.contact{background:var(--navy);color:#fff;padding:80px 24px}
+.contact-inner{max-width:720px;margin:0 auto;text-align:center}
+.contact .section-title{color:#fff}
+.contact-desc{font-size:15px;color:rgba(255,255,255,.6);margin-bottom:8px}
+.contact-phone{font-size:40px;font-weight:800;color:var(--gold-light);margin:16px 0 20px;letter-spacing:1px}
+.contact-phone .lucide{width:28px;height:28px;vertical-align:-4px;margin-right:8px}
+.contact-info{display:flex;flex-wrap:wrap;justify-content:center;gap:40px;margin-top:36px;font-size:14px;color:rgba(255,255,255,.65)}
+.contact-info>div{display:flex;align-items:center;gap:8px}
+.contact-info .lucide{width:18px;height:18px;flex-shrink:0;opacity:.7}/* ── Animations ── */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes slideRight{from{transform:translateX(100%)}to{transform:translateX(0)}}
+@keyframes toastUp{from{transform:translate(-50%,20px);opacity:0}to{transform:translate(-50%,0);opacity:1}}
+
+/* ── Responsive ── */
+@media(max-width:768px){
+  .header-inner{padding:0 16px;gap:12px}
+  .header-nav{display:none}
+  .hero h1{font-size:28px}
+  .hero-stats{gap:24px}
+  .hero-stat-val{font-size:24px}
+  .product-grid{grid-template-columns:1fr}
+  .modal{margin:12px;max-height:95vh}
+  .modal-body{padding:20px}
+  .modal-actions{flex-direction:column}
+  .form-row{grid-template-columns:1fr}
+  .cart-panel{width:100vw}
+  .cat-btn{padding:12px 14px;font-size:13px}
+}
+@media(max-width:480px){
+  .header-phone{display:none}
+  .hero{padding:48px 16px}
+  .hero h1{font-size:24px}
+  .card-img{height:180px}
+}
+</style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header class="header">
+  <div class="header-inner">
+    <a href="#" class="header-logo"><i data-lucide="truck"></i>德鸿车行</a>
+    <nav class="header-nav">
+      <a href="#" class="active">产品中心</a>
+      <a href="about.html">关于我们</a>
+      <a href="contact.html">联系我们</a>
+    </nav>
+    <span class="header-phone"><i data-lucide="phone"></i>15328047889</span>
+    <button class="cart-btn" onclick="toggleCart()" title="询价清单">
+      <i data-lucide="shopping-cart"></i>询价清单
+      <span class="cart-badge" id="cartBadge" style="display:none">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- ── Category Bar ── -->
+<div class="cat-bar">
+  <div class="cat-bar-inner" id="catBar"></div>
+</div>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>品质重卡 · 值得信赖</h1>
+    <p>牵引车头 / 挂车 / 自卸车 / 搅拌车 / 专用车 — 全品类覆盖，厂家直供，全国可提</p>
+    <a href="#products" class="hero-cta"><i data-lucide="arrow-down"></i>浏览车型</a>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-val">200+</div><div class="hero-stat-label">在售车型</div></div>
+      <div class="hero-stat"><div class="hero-stat-val">20年</div><div class="hero-stat-label">行业经验</div></div>
+      <div class="hero-stat"><div class="hero-stat-val">5万+</div><div class="hero-stat-label">服务客户</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Product Grid ── -->
+<main class="main" id="products">
+  <div class="product-count" id="productCount"></div>
+  <div class="product-grid" id="productGrid"></div>
+</main>
+
+<!-- ── Detail Modal ── -->
+<div id="detailModal" style="display:none">
+  <div class="modal-overlay" onclick="closeDetail()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeDetail()"><i data-lucide="x"></i></button>
+      <div class="modal-img" id="detailImg"></div>
+      <div class="modal-body" id="detailBody"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Cart Panel ── -->
+<div id="cartPanel" style="display:none">
+  <div class="cart-overlay" onclick="toggleCart()"></div>
+  <div class="cart-panel">
+    <div class="cart-header">
+      <h3>询价清单</h3>
+      <button onclick="toggleCart()"><i data-lucide="x"></i></button>
+    </div>
+    <div id="cartContent" class="cart-items"></div>
+    <div class="cart-footer" id="cartFooter"></div>
+  </div>
+</div>
+
+<!-- ── Inquiry Form Modal ── -->
+<div id="inquiryModal" style="display:none">
+  <div class="modal-overlay" onclick="closeInquiry()">
+    <div class="modal" style="max-width:560px" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeInquiry()"><i data-lucide="x"></i></button>
+      <div class="modal-body">
+        <div class="modal-title" style="margin-bottom:4px">提交询价</div>
+        <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px">填写联系方式，我们的销售顾问将在30分钟内与您联系</p>
+
+        <div class="form-summary" id="inquirySummary"></div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label><span class="required">*</span> 联系人</label>
+            <input type="text" id="inqName" placeholder="请输入姓名">
+          </div>
+          <div class="form-group">
+            <label><span class="required">*</span> 手机号码</label>
+            <input type="tel" id="inqPhone" placeholder="请输入手机号">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>公司名称</label>
+          <input type="text" id="inqCompany" placeholder="选填">
+        </div>
+        <div class="form-group">
+          <label>补充说明</label>
+          <textarea id="inqNote" placeholder="如有特殊需求，请在此说明…"></textarea>
+        </div>
+        <button class="btn-primary" style="width:100%;justify-content:center;padding:14px" onclick="submitInquiry()">
+          <i data-lucide="send"></i>提交询价
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Toast ── -->
+<div id="toast" class="toast" style="display:none"></div>
+
+<script>
+/* ═══════════════════════════ DATA ═══════════════════════════ */
+const products = [
+  {id:1,name:"解放J7 6×4 牵引车",cat:"牵引车头",price:380000,imgColor:"#2c4a6e",
+   specs:{发动机:"锡柴 CA6DM3-56E6 560马力",变速箱:"解放CA12TAX250M 12挡",后桥:"解放435冲焊桥 速比3.417",轴距:"3300+1350mm",总质量:"25000kg",准拖挂:"40000kg",排放:"国六"},
+   desc:"解放J7是解放全新一代高端重卡，搭载锡柴奥威13L发动机，匹配解放自主12挡变速箱，动力强劲、油耗经济。驾驶室采用四点悬浮+气囊座椅，驾乘舒适性大幅提升。标配车道偏离预警、前碰撞预警等主动安全系统。"},
+  {id:2,name:"东风天龙KL 牵引车",cat:"牵引车头",price:358000,imgColor:"#3d5a4e",
+   specs:{发动机:"东风DDi13 520马力",变速箱:"东风DT1425 14挡",后桥:"东风德纳485桥 速比3.64",轴距:"3300+1350mm",总质量:"25000kg",准拖挂:"40000kg",排放:"国六"},
+   desc:"东风天龙KL是基于天龙平台全新升级的重卡产品，搭载东风自主DDi13发动机，520马力输出。驾驶室空间宽敞，储物空间丰富，适合长途干线物流运输。"},
+  {id:3,name:"重汽HOWO TH7 牵引车",cat:"牵引车头",price:420000,imgColor:"#4a3030",
+   specs:{发动机:"潍柴WP13.550E62 550马力",变速箱:"重汽HW25716XAL 16挡",后桥:"重汽MCY13 速比3.36",轴距:"3200+1400mm",总质量:"25000kg",准拖挂:"40000kg",排放:"国六"},
+   desc:"HOWO TH7是中国重汽全新平台产品，搭载潍柴WP13 550马力发动机，匹配重汽自主16挡AMT变速箱。驾驶室采用平地板设计，内部高度超过2米，配备多功能方向盘、大屏中控等智能化配置。"},
+  {id:4,name:"陕汽德龙X6000 牵引车",cat:"牵引车头",price:456000,imgColor:"#2a3040",
+   specs:{发动机:"潍柴WP15H 600马力",变速箱:"法士特SF16JZ260 16挡AMT",后桥:"汉德HDZ440 速比2.85",轴距:"3300+1350mm",总质量:"25000kg",准拖挂:"40000kg",排放:"国六"},
+   desc:"德龙X6000是陕汽旗舰级高端重卡，搭载潍柴15L 600马力发动机，匹配法士特16挡AMT变速箱。全新设计驾驶室风阻系数仅0.45，配备全液晶仪表、智能网联系统、360°环视影像等高端配置。"},
+  {id:5,name:"福田欧曼EST 牵引车",cat:"牵引车头",price:368000,imgColor:"#3a4a5c",
+   specs:{发动机:"福康X13 560马力",变速箱:"采埃孚12TX2620TD 12挡AMT",后桥:"青特440桥 速比3.083",轴距:"3300+1350mm",总质量:"25000kg",准拖挂:"40000kg",排放:"国六"},
+   desc:"欧曼EST采用奔驰技术平台，搭载康明斯X13发动机与采埃孚AMT变速箱的超级动力链。驾驶室源自奔驰Actros设计，NVH表现优异，适合高效物流运输。"},
+  {id:6,name:"解放JH6 8×4 载货车",cat:"载货车",price:320000,imgColor:"#4a5a3a",
+   specs:{发动机:"锡柴CA6DM2 460马力",变速箱:"解放CA12TAX210M 12挡",货箱:"9600×2450×600mm",轴距:"2100+4500+1350mm",总质量:"31000kg",载质量:"18000kg",排放:"国六"},
+   desc:"解放JH6 8×4载货车，底盘扎实可靠，货箱长度9.6米，适合中长途普货、绿通等运输场景。驾驶室采用四点悬浮，舒适性在同级中表现出色。"},
+  {id:7,name:"东风天锦KR 6×2 载货车",cat:"载货车",price:285000,imgColor:"#4a5535",
+   specs:{发动机:"东风DDi75 300马力",变速箱:"法士特9JS135TA 9挡",货箱:"7800×2450×600mm",轴距:"5000mm",总质量:"25000kg",载质量:"15000kg",排放:"国六"},
+   desc:"东风天锦KR是中卡市场的标杆产品，搭载东风DDi75发动机，300马力。驾驶室全新设计，空间更大、视野更好，适合城际物流配送。"},
+  {id:8,name:"重汽HOWO 8×4 自卸车",cat:"自卸车",price:398000,imgColor:"#5a4030",
+   specs:{发动机:"潍柴WP12.460E62 460马力",变速箱:"重汽HW19712 12挡",货箱:"7600×2350×1500mm",轴距:"1800+3800+1350mm",总质量:"31000kg",举升:"海沃191前顶",排放:"国六"},
+   desc:"HOWO自卸车底盘专为重载工况强化，大梁双层车架、加强型板簧。货箱采用高强度耐磨钢板，底部厚度8mm、边板6mm。标配海沃液压举升系统，举升稳定可靠。"},
+  {id:9,name:"陕汽德龙F3000 自卸车",cat:"自卸车",price:380000,imgColor:"#4a3a2a",
+   specs:{发动机:"潍柴WP10H 400马力",变速箱:"法士特12JSD200T 12挡",货箱:"7200×2300×1500mm",轴距:"1800+3575+1400mm",总质量:"31000kg",举升:"海沃169前顶",排放:"国六"},
+   desc:"德龙F3000自卸车采用军工品质底盘，通过性强，适合矿山、工地等恶劣工况。标配沙漠空滤，有效应对多尘环境。"},
+  {id:10,name:"三一重工 8×4 搅拌车",cat:"搅拌车",price:520000,imgColor:"#4a4540",
+   specs:{发动机:"潍柴WP10H 375马力",变速箱:"法士特9JS150TA-B 9挡",罐体:"12m³",轴距:"1800+3000+1400mm",总质量:"31000kg",液压:"PMP/力士乐",排放:"国六"},
+   desc:"三一搅拌车罐体采用高耐磨B520JJ钢板，使用寿命长。叶片采用对数螺旋线设计，进出料速度快、残余率低。标配三一智能管理系统，实时监控车辆状态。"},
+  {id:11,name:"中集 三轴集装箱挂车",cat:"挂车",price:180000,imgColor:"#3a4048",
+   specs:{类型:"集装箱骨架车",轴数:"3轴",轮胎:"12R22.5 12条",总质量:"40000kg",整备质量:"6200kg",载质量:"33800kg",尺寸:"13950×2500×1530mm",鞍座:"90#牵引销"},
+   desc:"中集集装箱挂车采用高强度钢焊接骨架，轻量化设计自重仅6.2吨。适配20/40英尺标准集装箱运输，全国公告齐全、上牌无忧。"},
+  {id:12,name:"华骏 三轴栏板挂车",cat:"挂车",price:150000,imgColor:"#444840",
+   specs:{类型:"栏板半挂车",轴数:"3轴",轮胎:"12R22.5 12条",总质量:"40000kg",整备质量:"6500kg",载质量:"33500kg",尺寸:"13000×2500×600mm",鞍座:"90#牵引销"},
+   desc:"华骏栏板挂车采用优质高强度钢板，底板为3mm花纹板，边梁为16#槽钢。配BPW/富华车桥，制动性能可靠。适合普货、建材等运输。"},
+  {id:13,name:"中集 低平板挂车",cat:"挂车",price:210000,imgColor:"#3a4448",
+   specs:{类型:"低平板半挂车",轴数:"3轴",轮胎:"8.25R20 12条",总质量:"40000kg",整备质量:"9000kg",载质量:"31000kg",平台:"3000mm宽",鞍座:"90#牵引销"},
+   desc:"中集低平板挂车平台高度仅1.15米，适合工程机械、大型设备运输。轮胎外露设计，通过性好。配液压爬梯，装卸设备方便快捷。"},
+  {id:14,name:"华骏 自卸挂车",cat:"挂车",price:165000,imgColor:"#48443a",
+   specs:{类型:"自卸半挂车",轴数:"3轴",轮胎:"12R22.5 12条",总质量:"40000kg",整备质量:"8000kg",载质量:"32000kg",货箱:"9500×2300×600mm",举升:"海沃191前顶"},
+   desc:"华骏自卸挂车厢体采用高强度耐磨板，底板6mm、边板4mm。配海沃液压举升系统，翻转角度大，卸料彻底。适合煤炭、砂石料等散货运输。"},
+  {id:15,name:"福田 8×4 冷藏车",cat:"专用车",price:420000,imgColor:"#3a4a55",
+   specs:{发动机:"福康ISF4.5 220马力",变速箱:"法士特8JS85TE 8挡",货箱:"9600×2430×2500mm",冷机:"开利/冷王",温控:"-18℃~+20℃",轴距:"2100+4500+1350mm",排放:"国六"},
+   desc:"福田冷藏车采用聚氨酯保温厢体，厚度80mm，保温性能优异。标配开利/冷王制冷机组，温度控制精准。适合冷链物流、生鲜配送。"}
+];
+
+const categories = ["全部","牵引车头","载货车","自卸车","搅拌车","挂车","专用车"];
+let activeCat = "全部";
+
+/* ═══════════════════════════ CART ═══════════════════════════ */
+function getCart(){try{return JSON.parse(localStorage.getItem('truckCart')||'[]')}catch(e){return[]}}
+function saveCart(c){localStorage.setItem('truckCart',JSON.stringify(c))}
+function cartCount(){return getCart().reduce((s,i)=>s+i.qty,0)}
+
+function addToCart(id){const c=getCart();const ex=c.find(i=>i.id===id);if(ex){ex.qty++}else{c.push({id,qty:1})};saveCart(c);updateCartUI();showToast('已加入询价清单','success')}
+function removeFromCart(id){saveCart(getCart().filter(i=>i.id!==id));updateCartUI()}
+function setQty(id,qty){const c=getCart();const ex=c.find(i=>i.id===id);if(!ex)return;if(qty<1){removeFromCart(id);return};ex.qty=qty;saveCart(c);updateCartUI()}
+function isInCart(id){return getCart().some(i=>i.id===id)}
+
+/* ═══════════════════════════ PRODUCT RENDER ══════════════════ */
+const catIcons={牵引车头:'truck',载货车:'package',自卸车:'arrow-down-to-line',搅拌车:'rotate-cw',挂车:'link',专用车:'snowflake'};
+
+function getCatIcon(cat){return catIcons[cat]||'truck'}
+
+function renderProducts(filterCat){
+  activeCat=filterCat;
+  const filtered=filterCat==='全部'?products:products.filter(p=>p.cat===filterCat);
+  document.getElementById('productCount').textContent=`共 ${filtered.length} 款车型`;
+  const grid=document.getElementById('productGrid');
+  const inCartIds=new Set(getCart().map(i=>i.id));
+  grid.innerHTML=filtered.map(p=>{
+    const added=inCartIds.has(p.id);
+    return`<div class="card" onclick="openDetail(${p.id})">
+      <div class="card-img" style="background:${p.imgColor}">
+        <div class="img-placeholder"><i data-lucide="${getCatIcon(p.cat)}"></i><div>${p.name.split(' ')[0]}</div></div>
+        <span class="cat-tag">${p.cat}</span>
+      </div>
+      <div class="card-body">
+        <div class="card-name">${p.name}</div>
+        <div class="card-specs">${Object.entries(p.specs).slice(0,3).map(([k,v])=>`<span>${k}：${v}</span>`).join('')}</div>
+      </div>
+      <div class="card-bottom">
+        <div class="card-price">¥${(p.price/10000).toFixed(0)}<small>万起</small></div>
+        <button class="card-add${added?' in-cart':''}" onclick="event.stopPropagation();${added?`removeFromCart(${p.id})`:`addToCart(${p.id})`}">
+          <i data-lucide="${added?'check':'plus'}"></i>${added?'已加入':'加询价'}
+        </button>
+      </div>
+    </div>`;
+  }).join('');
+  lucide.createIcons();
+}
+
+function renderCatBar(){
+  const bar=document.getElementById('catBar');
+  bar.innerHTML=categories.map(c=>`<button class="cat-btn${c===activeCat?' active':''}" onclick="renderProducts('${c}');renderCatBar()">${c}</button>`).join('');
+}
+
+/* ═══════════════════════════ DETAIL MODAL ════════════════════ */
+function openDetail(id){
+  const p=products.find(x=>x.id===id);if(!p)return;
+  const added=isInCart(id);
+  document.getElementById('detailImg').innerHTML=`<div class="img-placeholder"><i data-lucide="${getCatIcon(p.cat)}"></i><div>${p.name.split(' ')[0]}</div></div>`;
+  document.getElementById('detailImg').style.background=p.imgColor;
+
+  document.getElementById('detailBody').innerHTML=`
+    <div class="modal-title">${p.name}</div>
+    <span class="modal-cat">${p.cat}</span>
+    <div class="modal-price">¥${(p.price/10000).toFixed(0)}<small>万起</small></div>
+    <table class="specs-table">${Object.entries(p.specs).map(([k,v])=>`<tr><th>${k}</th><td>${v}</td></tr>`).join('')}</table>
+    <div class="modal-desc">${p.desc}</div>
+    <div class="modal-actions">
+      <button class="btn-primary${added?' in-cart':''}" onclick="${added?`removeFromCart(${id});closeDetail()`:`addToCart(${id});closeDetail()`}">
+        <i data-lucide="${added?'check':'plus'}"></i>${added?'已加入询价清单':'加入询价清单'}
+      </button>
+      <button class="btn-outline" onclick="closeDetail();toggleCart()">
+        <i data-lucide="shopping-cart"></i>查看询价清单
+      </button>
+    </div>`;
+  document.getElementById('detailModal').style.display='';
+  document.body.style.overflow='hidden';
+  lucide.createIcons();
+}
+function closeDetail(){
+  document.getElementById('detailModal').style.display='none';
+  document.body.style.overflow='';
+}
+
+/* ═══════════════════════════ CART PANEL ══════════════════════ */
+function toggleCart(){
+  const panel=document.getElementById('cartPanel');
+  if(panel.style.display===''){panel.style.display='none';document.body.style.overflow='';return}
+  panel.style.display='';
+  document.body.style.overflow='hidden';
+  renderCart();
+}
+function renderCart(){
+  const cart=getCart();
+  const content=document.getElementById('cartContent');
+  const footer=document.getElementById('cartFooter');
+
+  if(cart.length===0){
+    content.innerHTML=`<div class="cart-empty"><i data-lucide="shopping-cart"></i><div>询价清单为空</div><div style="font-size:12px">浏览车型并加入询价</div></div>`;
+    footer.innerHTML='';
+    lucide.createIcons();
+    updateCartUI();
+    return;
+  }
+  let total=0;
+  content.innerHTML=cart.map(ci=>{
+    const p=products.find(x=>x.id===ci.id);if(!p)return'';
+    const sub=p.price*ci.qty;total+=sub;
+    return`<div class="cart-item">
+      <div class="cart-item-img" style="background:${p.imgColor}"><i data-lucide="${getCatIcon(p.cat)}"></i></div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${p.name}</div>
+        <div class="cart-item-price">¥${(p.price/10000).toFixed(0)}万</div>
+        <div class="cart-item-qty">
+          <button onclick="setQty(${p.id},${ci.qty-1})">−</button>
+          <span>${ci.qty}</span>
+          <button onclick="setQty(${p.id},${ci.qty+1})">+</button>
+        </div>
+        <button class="cart-item-remove" onclick="removeFromCart(${p.id})">移除</button>
+      </div>
+    </div>`;
+  }).join('');
+  footer.innerHTML=`
+    <div class="cart-total">
+      <span>合计参考价</span>
+      <span class="cart-total-amount">¥${(total/10000).toFixed(0)}万</span>
+    </div>
+    <button class="cart-submit" onclick="openInquiry()"><i data-lucide="send"></i>提交询价</button>`;
+  lucide.createIcons();
+  updateCartUI();
+}
+function updateCartUI(){
+  const count=cartCount();
+  const badge=document.getElementById('cartBadge');
+  if(count>0){badge.style.display='flex';badge.textContent=count}else{badge.style.display='none'}
+  renderProducts(activeCat);
+  renderCatBar();
+  if(document.getElementById('cartPanel').style.display!=='none')renderCart();
+}
+
+/* ═══════════════════════════ INQUIRY FORM ════════════════════ */
+function openInquiry(){
+  const cart=getCart();if(cart.length===0)return;
+  let total=0;
+  const summary=document.getElementById('inquirySummary');
+  summary.innerHTML=`<h4>询价车型 (${cart.length}款)</h4>${cart.map(ci=>{const p=products.find(x=>x.id===ci.id);if(!p)return'';total+=p.price*ci.qty;return`<div class="form-summary-item"><span>${p.name} ×${ci.qty}</span><span>¥${(p.price/10000).toFixed(0)}万</span></div>`}).join('')}<div class="form-summary-total"><span>参考总价</span><span>¥${(total/10000).toFixed(0)}万</span></div>`;
+  document.getElementById('inquiryModal').style.display='';
+  document.getElementById('inqName').value='';
+  document.getElementById('inqPhone').value='';
+  document.getElementById('inqCompany').value='';
+  document.getElementById('inqNote').value='';
+  lucide.createIcons();
+}
+function closeInquiry(){
+  document.getElementById('inquiryModal').style.display='none';
+}
+function submitInquiry(){
+  const name=document.getElementById('inqName').value.trim();
+  const phone=document.getElementById('inqPhone').value.trim();
+  if(!name){showToast('请填写联系人姓名');return}
+  if(!phone||!/^1[3-9]\d{9}$/.test(phone)){showToast('请填写正确的手机号码');return}
+  const company=document.getElementById('inqCompany').value.trim();
+  const note=document.getElementById('inqNote').value.trim();
+  const cart=getCart();
+  const items=cart.map(ci=>{const p=products.find(x=>x.id===ci.id);return`${p.name} ×${ci.qty}`}).join('；');
+  console.log('📩 询价提交:',{name,phone,company,items,note});
+  saveCart([]);
+  updateCartUI();
+  closeInquiry();
+  toggleCart();
+  document.getElementById('cartPanel').style.display='none';
+  setTimeout(()=>showToast('✅ 询价已提交，销售顾问将尽快联系您','success'),300);
+}
+
+/* ═══════════════════════════ TOAST ═══════════════════════════ */
+let toastTimer;
+function showToast(msg,type=''){
+  clearTimeout(toastTimer);
+  const el=document.getElementById('toast');
+  el.textContent=msg;el.className='toast'+(type?' '+type:'');
+  el.style.display='';
+  toastTimer=setTimeout(()=>el.style.display='none',2500);
+}
+
+/* ═══════════════════════════ INIT ════════════════════════════ */
+renderCatBar();
+renderProducts('全部');
+updateCartUI();
+lucide.createIcons();
+</script>
+</body>
+</html>

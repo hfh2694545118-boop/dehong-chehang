@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>关于我们 — 德鸿车行</title>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+:root {
+  --navy: #141a29; --navy-light: #1e2738; --navy-lighter: #2a354a;
+  --gold: #c7851a; --gold-light: #e8982e; --gold-pale: #fef7ed;
+  --bg: #f2f3f5; --card: #ffffff;
+  --text: #1a1a1a; --text-secondary: #5c5c5c; --text-muted: #999;
+  --border: #e5e5e5; --border-light: #f0f0f0;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.06);
+  --shadow: 0 2px 8px rgba(0,0,0,.08);
+  --radius: 6px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:inherit;text-decoration:none}
+
+/* Header */
+.header{background:var(--navy);color:#fff;box-shadow:0 2px 12px rgba(0,0,0,.15)}
+.header-inner{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;height:64px;gap:32px}
+.header-logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:700;letter-spacing:.5px}
+.header-logo .lucide{color:var(--gold-light);width:28px;height:28px}
+.header-nav{display:flex;gap:28px;font-size:14px;margin-left:auto}
+.header-nav a{padding:4px 0;border-bottom:2px solid transparent;transition:all .15s}
+.header-nav a:hover,.header-nav a.active{border-bottom-color:var(--gold-light);color:var(--gold-light)}
+.header-phone{display:flex;align-items:center;gap:6px;font-size:15px;font-weight:600;color:var(--gold-light)}
+.header-phone .lucide{width:16px;height:16px}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 60%,#2d3b2a 100%);color:#fff;padding:64px 24px;text-align:center}
+.hero h1{font-size:36px;font-weight:800;letter-spacing:1px;margin-bottom:12px}
+.hero p{font-size:16px;color:rgba(255,255,255,.7);max-width:600px;margin:0 auto}
+
+/* Section */
+.section{padding:80px 24px}
+.section-inner{max-width:1080px;margin:0 auto}
+.section-title{font-size:26px;font-weight:800;text-align:center;margin-bottom:12px}
+.section-subtitle{font-size:15px;color:var(--text-muted);text-align:center;margin-bottom:48px}
+.section-body{max-width:800px;margin:0 auto;font-size:15px;color:var(--text-secondary);line-height:2.2}
+.section-body p{margin-bottom:16px}
+
+/* Strengths Grid */
+.strengths{background:var(--card)}
+.strengths-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.strength-card{text-align:center;padding:40px 24px;border:1px solid var(--border-light);border-radius:var(--radius);transition:box-shadow .2s}
+.strength-card:hover{box-shadow:var(--shadow)}
+.strength-card .lucide{width:40px;height:40px;color:var(--gold-light);margin-bottom:16px}
+.strength-card h4{font-size:16px;font-weight:700;margin-bottom:8px}
+.strength-card p{font-size:14px;color:var(--text-secondary);line-height:1.7}
+
+/* Brands */
+.brands-bar{background:var(--card);padding:60px 24px;text-align:center}
+.brands-list{display:flex;flex-wrap:wrap;justify-content:center;gap:32px;max-width:900px;margin:32px auto 0}
+.brand-item{font-size:16px;font-weight:600;color:var(--text-secondary);padding:12px 24px;border:1px solid var(--border);border-radius:var(--radius);transition:all .15s}
+.brand-item:hover{color:var(--navy);border-color:var(--navy)}
+
+/* Timeline */
+.timeline{background:var(--bg)}
+.timeline-list{max-width:700px;margin:0 auto;position:relative;padding-left:40px}
+.timeline-list::before{content:'';position:absolute;left:15px;top:0;bottom:0;width:2px;background:var(--border)}
+.timeline-item{position:relative;margin-bottom:36px;padding-left:24px}
+.timeline-item::before{content:'';position:absolute;left:-31px;top:6px;width:12px;height:12px;background:var(--gold-light);border-radius:50%;border:3px solid var(--gold-pale)}
+.timeline-year{font-size:13px;font-weight:700;color:var(--gold)}
+.timeline-title{font-size:16px;font-weight:700;margin:4px 0 6px}
+.timeline-desc{font-size:14px;color:var(--text-secondary);line-height:1.8}
+
+/* CTA */
+.cta{background:var(--navy);color:#fff;padding:60px 24px;text-align:center}
+.cta h2{font-size:26px;font-weight:800;margin-bottom:12px}
+.cta p{font-size:15px;color:rgba(255,255,255,.6);margin-bottom:28px}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--gold-light);color:#fff;font-size:15px;font-weight:600;padding:14px 32px;border-radius:var(--radius);transition:background .15s}
+.cta-btn:hover{background:var(--gold)}
+.cta-btn .lucide{width:18px;height:18px}
+
+@media(max-width:768px){
+  .header-nav{display:none}
+  .hero h1{font-size:26px}
+  .section-title{font-size:22px}
+  .timeline-list{padding-left:30px}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html" class="header-logo"><i data-lucide="truck"></i>德鸿车行</a>
+    <nav class="header-nav">
+      <a href="index.html">产品中心</a>
+      <a href="about.html" class="active">关于我们</a>
+      <a href="contact.html">联系我们</a>
+    </nav>
+    <span class="header-phone"><i data-lucide="phone"></i>15328047889</span>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>关于德鸿车行</h1>
+  <p>20年深耕商用车领域，值得信赖的重卡销售服务伙伴</p>
+</section>
+
+<section class="section" style="background:var(--card)">
+  <div class="section-inner">
+    <div class="section-title">公司简介</div>
+    <div class="section-subtitle">始于2006年，初心不改</div>
+    <div class="section-body">
+      <p>德鸿车行成立于2006年，总部位于四川省成都市，是一家集牵引车、载货车、自卸车、搅拌车、挂车、专用车销售于一体的综合性商用车经销商。</p>
+      <p>公司自成立以来，始终秉持"品质为先、客户至上"的经营理念，深耕西南市场、辐射全国。经过20年的发展，德鸿车行已与解放、东风、中国重汽、陕汽、福田、三一重工、中集车辆、华骏等12家国内主流商用车品牌建立了长期战略合作关系，形成了覆盖牵引、载货、自卸、搅拌、挂车、专用车六大品类的完整产品矩阵。</p>
+      <p>我们拥有专业的销售顾问团队和售后服务体系，累计服务客户超过5万家。无论是长途干线物流、工程建设运输，还是城市配送、冷链运输，德鸿车行都能为您提供最合适的车型方案和一站式购车服务。</p>
+    </div>
+  </div>
+</section>
+
+<section class="strengths section">
+  <div class="section-inner">
+    <div class="section-title">我们的优势</div>
+    <div class="section-subtitle">选择德鸿的四大理由</div>
+    <div class="strengths-grid">
+      <div class="strength-card">
+        <i data-lucide="factory"></i>
+        <h4>厂家直供</h4>
+        <p>与12家主流主机厂战略合作，跳过中间环节，价格更具竞争力</p>
+      </div>
+      <div class="strength-card">
+        <i data-lucide="map-pin"></i>
+        <h4>全国可提</h4>
+        <p>覆盖全国主要物流枢纽的提车网络，就近提车、省时省力</p>
+      </div>
+      <div class="strength-card">
+        <i data-lucide="shield-check"></i>
+        <h4>正规手续</h4>
+        <p>所有车型全国公告齐全，上牌无忧，提供一站式挂牌服务</p>
+      </div>
+      <div class="strength-card">
+        <i data-lucide="wrench"></i>
+        <h4>售后保障</h4>
+        <p>全国联保，合作服务站超800家，保养维修全程无忧</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="timeline section">
+  <div class="section-inner">
+    <div class="section-title">发展历程</div>
+    <div class="section-subtitle">一步一个脚印，与行业共成长</div>
+    <div class="timeline-list">
+      <div class="timeline-item">
+        <div class="timeline-year">2006年</div>
+        <div class="timeline-title">公司成立</div>
+        <div class="timeline-desc">德鸿车行在成都正式成立，初期以牵引车销售为主营业务。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2010年</div>
+        <div class="timeline-title">品类扩展</div>
+        <div class="timeline-desc">新增自卸车、载货车品类，与重汽、陕汽等品牌达成合作。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2014年</div>
+        <div class="timeline-title">服务升级</div>
+        <div class="timeline-desc">建立自有售后服务团队，推出"购车+保险+上牌"一站式服务。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2018年</div>
+        <div class="timeline-title">全国布局</div>
+        <div class="timeline-desc">服务网络扩展至全国，累计服务客户突破3万家。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2023年</div>
+        <div class="timeline-title">数字化转型</div>
+        <div class="timeline-desc">上线线上询价平台，实现线上线下融合服务，客户数突破5万。</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2026年</div>
+        <div class="timeline-title">品牌升级</div>
+        <div class="timeline-desc">全面升级品牌形象，在售车型超过200款，合作服务站超800家。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="brands-bar">
+  <div class="section-inner">
+    <div class="section-title">合作品牌</div>
+    <div class="section-subtitle">与主流商用车品牌保持长期战略合作</div>
+    <div class="brands-list">
+      <span class="brand-item">一汽解放</span>
+      <span class="brand-item">东风商用车</span>
+      <span class="brand-item">中国重汽</span>
+      <span class="brand-item">陕汽重卡</span>
+      <span class="brand-item">福田汽车</span>
+      <span class="brand-item">三一重工</span>
+      <span class="brand-item">中集车辆</span>
+      <span class="brand-item">华骏车辆</span>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>准备好选购您的下一辆重卡了吗？</h2>
+  <p>200+款车型在线浏览，专业顾问一对一服务</p>
+  <a href="index.html" class="cta-btn"><i data-lucide="arrow-left"></i>返回产品中心</a>
+</section>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>
